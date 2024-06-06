@@ -5,6 +5,9 @@ from django.db import models
 class Team(models.Model):
     country = models.CharField(max_length=3, unique=True)
 
+    def __str__(self):
+        return self.country
+
     def matches_played(self):
         matches = TeamMatch.objects.filter(team_id=self.id).count()
         return matches
