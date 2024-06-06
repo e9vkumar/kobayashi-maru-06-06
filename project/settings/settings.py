@@ -29,6 +29,7 @@ SECRET_KEY = '6(l$w4k4ij%cf(%g*349-0-cld(4&dbctw)037juzd4q2h)jot'
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'localhost',
     'pythonjobs.in',
     'www.pythonjobs.in'
@@ -38,6 +39,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'tournament',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
