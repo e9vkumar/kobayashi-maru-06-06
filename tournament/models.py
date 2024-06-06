@@ -7,11 +7,17 @@ class Team(models.Model):
 
     def matches_played(self):
         matches = TeamMatch.objects.filter(team_id=self.id).count()
+        return matches
+    
+    def matches_won(self):
+        wins = Match.objects.filter(winning_team_id=self.id).count()
+        return wins 
 
 class Match(models.Model):
     home_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="home_team")
     away_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="away_team")
     date = models.DateField()
+    winning_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="winner_team",default=home_team)
 
 
 class TeamMatch(models.Model):
