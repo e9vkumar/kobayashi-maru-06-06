@@ -5,9 +5,12 @@ from django.db import models
 class Team(models.Model):
     country = models.CharField(max_length=3, unique=True)
 
+    def matches_played(self):
+        matches = TeamMatch.objects.filter(team_id=self.id).count()
+
 class Match(models.Model):
-    home_team = models.ForeignKey(Team,on_delete=models.CASCADE)
-    away_team = models.ForeignKey(Team,on_delete=models.CASCADE)
+    home_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="home_team")
+    away_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="away_team")
     date = models.DateField()
 
 
