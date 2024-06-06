@@ -10,3 +10,12 @@ class Match(models.Model):
     away_team = models.ForeignKey(Team,on_delete=models.CASCADE)
     date = models.DateField()
 
+
+class TeamMatch(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_matches')
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name='team_matches')
+    batting_score = models.IntegerField()
+    batting_wickets = models.IntegerField()
+    batting_overs = models.IntegerField()
+
+
