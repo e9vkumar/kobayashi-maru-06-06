@@ -12,6 +12,10 @@ class Team(models.Model):
     def matches_won(self):
         wins = Match.objects.filter(winning_team_id=self.id).count()
         return wins 
+    
+    def matches_lost(self):
+        losses = TeamMatch.objects.filter(team_id=self.id).count() - Match.objects.filter(winning_team_id=self.id).count()
+        return losses
 
 class Match(models.Model):
     home_team = models.ForeignKey(Team,on_delete=models.CASCADE,related_name="home_team")
